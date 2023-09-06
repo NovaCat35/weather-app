@@ -71,7 +71,11 @@ function createTempConditions() {
 function createMainTempType() {
 	const temp = createElement("p", `temp-${tempVersion}`);
    temp.classList.add('main-temp');
-	temp.textContent = `${currWeatherDetail.current.temp_f}°${tempSymbol}`;
+   if(tempSymbol == "F") {
+      temp.textContent = `${currWeatherDetail.current.temp_f}°${tempSymbol}`;
+   } else {
+      temp.textContent = `${currWeatherDetail.current.temp_c}°${tempSymbol}`;
+   }
 	return temp;
 }
 
@@ -81,7 +85,7 @@ function createFeelsLikeTempType() {
    if(tempSymbol == "F") {
       feelsLikeTemp.textContent = `Feels like ${currWeatherDetail.current.feelslike_f}°F`;
    } else {
-      feelsLikeTemp.textContent = `Feels like ${currWeatherDetail.current.feelslike_f}°C`;
+      feelsLikeTemp.textContent = `Feels like ${currWeatherDetail.current.feelslike_c}°C`;
    }
    return feelsLikeTemp;
 }
