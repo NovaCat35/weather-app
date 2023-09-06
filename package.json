@@ -12,6 +12,7 @@
   "author": "NovaCat35",
   "license": "ISC",
   "dependencies": {
+    "date-fns": "^2.30.0",
     "dotenv": "^16.3.1"
   },
   "devDependencies": {
