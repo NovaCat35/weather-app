@@ -57,9 +57,9 @@ function createTempConditions() {
 	const feelsLikeTemp = createFeelsLikeTempType();
 	const avgTemp = createAvgTemp();
 	const highTemp = createElement("p", "high-temp");
-	highTemp.textContent = createHighTemp(0);
+	highTemp.textContent = `High of ${createHighTemp(0)}`;
 	const lowTemp = createElement("p", "high-temp");
-	lowTemp.textContent = createLowTemp(0);
+	lowTemp.textContent = `Low of ${createLowTemp(0)}`;
 
 	rightTempContainer.appendChild(feelsLikeTemp);
 	rightTempContainer.appendChild(avgTemp);
@@ -134,34 +134,42 @@ function createAdditionalInfo() {
 
 function createWeeklyForecast() {
 	const weeklyContainer = createElement("div", "weekly-container");
-	const date = currForecastDetail.forecast.forecastday[1].date;
+	// const date = currForecastDetail.forecast.forecastday[1].date;
 	const forecastDayList = currForecastDetail.forecast.forecastday;
 
 	for (const [index, forecast] of forecastDayList.entries()) {
-		const rowContainer = createElement("div", "row-container");
+      // Skip the first index since it is the current date
+		if (index != 0) {
+			const rowContainer = createElement("div", "row-container");
 
-		// Produce the list of days into the row
-		const day = createElement("p", "forecast-day");
-		day.textContent = getDateToDay(forecast.date);
-		rowContainer.appendChild(day);
+			// Produce the list of days into the row
+			const day = createElement("p", "forecast-day");
+			day.textContent = getDateToDay(forecast.date);
+			rowContainer.appendChild(day);
 
-		// Produce day's forecast icon
-		const dayWeatherIcon = createElement("p", "forecast-weather-icon");
-		rowContainer.appendChild(dayWeatherIcon);
+			// Produce day's forecast icon
+			const dayWeatherIcon = createElement("img", "forecast-weather-icon");
+			dayWeatherIcon.src = "https:" + getWeatherIcon(index);
+			rowContainer.appendChild(dayWeatherIcon);
 
-		// Produce the max and min temp for the day
-		const tempContainer = createElement("div", "forecast-temp-container");
-		const maxTemp = createElement("p", "forecast-max-temp");
-		const minTemp = createElement("p", "forecast-min-temp");
-		maxTemp.textContent = createHighTemp(index);
-		minTemp.textContent = createLowTemp(index);
-		tempContainer.appendChild(maxTemp);
-		tempContainer.appendChild(minTemp);
-		rowContainer.appendChild(tempContainer);
+			// Produce the max and min temp for the day
+			const tempContainer = createElement("div", "forecast-temp-container");
+			const maxTemp = createElement("p", "forecast-max-temp");
+			const minTemp = createElement("p", "forecast-min-temp");
+			maxTemp.textContent = createHighTemp(index);
+			minTemp.textContent = createLowTemp(index);
+			tempContainer.appendChild(maxTemp);
+			tempContainer.appendChild(minTemp);
+			rowContainer.appendChild(tempContainer);
 
-		weeklyContainer.appendChild(rowContainer);
+			weeklyContainer.appendChild(rowContainer);
+		}
 	}
 	infoContainer.appendChild(weeklyContainer);
+}
+
+function getWeatherIcon(index) {
+	return `${currForecastDetail.forecast.forecastday[index].day.condition.icon}`;
 }
 
 // *** We Fill in the info for temp base on "Fahrenheit" or "Celsius" ***
@@ -210,14 +218,13 @@ function createHighTemp(index) {
 function createLowTemp(index) {
 	if (tempSymbol == "F") {
 		return `${currForecastDetail.forecast.forecastday[index].day.mintemp_f}°F`;
-	} 
-   return `${currForecastDetail.forecast.forecastday[index].day.mintemp_c}°C`;
+	}
+	return `${currForecastDetail.forecast.forecastday[index].day.mintemp_c}°C`;
 }
 
 function createWindSpeed() {
 	if (tempSymbol == "F") {
 		return `${currForecastDetail.forecast.forecastday[0].day.maxwind_mph} mph`;
-	} else {
 	}
 	return `${currForecastDetail.forecast.forecastday[0].day.maxwind_kph} km/h`;
 }

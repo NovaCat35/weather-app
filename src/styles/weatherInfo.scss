@@ -1,17 +1,20 @@
-.info-container {
+@mixin centerElements($direction: row) {
 	display: flex;
-	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	flex-direction: $direction;
+}
+
+.info-container {
+	@include centerElements(column);
 	.location-container {
       margin-top: 20px;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
+		@include centerElements(column);
 		gap: 5px;
 	}
 	.temp-info-container {
       margin-top: 20px;
-		display: flex;
-		justify-content: center;
+		@include centerElements;
 		gap: 40px;
 		.main-temp {
 			font-size: 3rem;
@@ -19,22 +22,26 @@
 	}
 	.additional-info-container {
 		margin-top: 25px;
-		display: flex;
-		justify-content: center;
-		align-items: center;
+		@include centerElements;
 		flex-wrap: wrap;
 		gap: 40px;
 		p {
 			font-size: 1.1rem;
 		}
 		.wrapper-container {
-			display: flex;
-			flex-direction: column;
-			justify-content: center;
-			align-items: center;
+			@include centerElements(column);
 			p {
 				text-align: center;
 			}
+		}
+	}
+	.weekly-container {
+		margin-top: 20px;
+		margin-bottom: 20px;
+		.row-container {
+			@include centerElements;
+			justify-content: space-around;
+			width: 100vw;
 		}
 	}
 }
