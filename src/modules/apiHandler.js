@@ -1,4 +1,5 @@
 import { createWeatherInfo, removeWeatherInfo } from "./domViewer.js";
+import {getTodayDate} from "./dateController.js";
 
 const API_KEY = process.env.API_KEY;
 const searchInput = document.querySelector('input[type="search"]');
@@ -31,10 +32,10 @@ async function fetchInfo(location, zip = null) {
 	try {
 		if (zip) {
 			currResponsePromise = fetch(`http://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=${zip}`);
-			forecastResponsePromise = fetch(`http://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${zip}`);
+			forecastResponsePromise = fetch(`http://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${zip}&days=8`);
 		} else {
 			currResponsePromise = fetch(`http://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=${location}`);
-			forecastResponsePromise = fetch(`http://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${location}`);
+			forecastResponsePromise = fetch(`http://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${location}&days=8`);
 		}
 
 		const [currResponse, forecastResponse] = await Promise.all([currResponsePromise, forecastResponsePromise]);
