@@ -88,6 +88,14 @@ function createAdditionalInfo() {
    precipitationWrapper.appendChild(precipitationLabel)
    precipitationWrapper.appendChild(precipitation)
 
+   const windWrapper = createElement('div', 'wrapper-container')
+   const windLabel = createElement("p", "wind-label");
+	const wind = createElement("p", "wind");
+   windLabel.textContent = 'Wind speed'
+	wind.textContent = createWindSpeed();
+   windWrapper.appendChild(windLabel)
+   windWrapper.appendChild(wind)
+
    const cloudinessWrapper = createElement('div', 'wrapper-container')
    const cloudinessLabel = createElement("p", "cloudiness-label");
 	const cloudiness = createElement("p", "cloudiness");
@@ -114,6 +122,7 @@ function createAdditionalInfo() {
 
 	additionalInfoContainer.appendChild(humidityWrapper);
 	additionalInfoContainer.appendChild(precipitationWrapper);
+	additionalInfoContainer.appendChild(windWrapper);
 	additionalInfoContainer.appendChild(cloudinessWrapper);
 	additionalInfoContainer.appendChild(sunriseWrapper);
 	additionalInfoContainer.appendChild(sunsetWrapper);
@@ -175,6 +184,13 @@ function createLowTemp() {
 		highTemp.textContent = `Low of ${currForecastDetail.forecast.forecastday[0].day.mintemp_c}°C`;
 	}
 	return highTemp;
+}
+
+function createWindSpeed(){
+   if (tempSymbol == "F") {
+      return `${currForecastDetail.forecast.forecastday[0].day.maxwind_mph} mph`;	} else {
+	} 
+   return `${currForecastDetail.forecast.forecastday[0].day.maxwind_kph} km/h`;
 }
 
 function removeWeatherInfo() {
