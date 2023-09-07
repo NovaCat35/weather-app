@@ -17,4 +17,24 @@
 			font-size: 3rem;
 		}
 	}
+	.additional-info-container {
+		margin-top: 20px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-wrap: wrap;
+		gap: 40px;
+		p {
+			font-size: 1.2rem;
+		}
+		.wrapper-container {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			p {
+				text-align: center;
+			}
+		}
+	}
 }
