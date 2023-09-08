@@ -28,17 +28,17 @@ async function fetchInfo(location, zip = null) {
 	let forecastResponsePromise = null;
 	try {
 		if (zip) {
-			currResponsePromise = fetch(`http://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=${zip}`, {
+			currResponsePromise = fetch(`https://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=${zip}`, {
 				mode: 'cors'
 			 });
-			forecastResponsePromise = fetch(`http://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${zip}&days=8`, {
+			forecastResponsePromise = fetch(`https://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${zip}&days=8`, {
 				mode: 'cors'
 			 });
 		} else {
-			currResponsePromise = fetch(`http://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=${location}`, {
+			currResponsePromise = fetch(`https://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=${location}`, {
 				mode: 'cors'
 			 });
-			forecastResponsePromise = fetch(`http://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${location}&days=8`, {
+			forecastResponsePromise = fetch(`https://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${location}&days=8`, {
 				mode: 'cors'
 			 });
 		}
