@@ -37,20 +37,22 @@ main{
       margin-top: 30px;
 		@include centerElements;
 		gap: 40px;
+		font-family: $main-font;
 		.main-temp {
-			font-family: $main-font;
+			color: white;
+			text-shadow: 1px 1px 5px black;
 			font-size: 3rem;
 			font-weight: 500;
 		}
 		.right-temp-container{
 			@include centerElements(column);
-			font-family: $thin-font;
-			color:rgb(73, 73, 73);
+			color:rgb(253, 127, 49);
+			text-shadow: 0px 0px 10px black, 1px 1px 30px black , -1px -1px 20px black;
 			font-size: 1.1rem;
 			align-items: flex-start;
 			gap: 10px;
 			span {
-				color: rgb(22, 22, 22);
+				color: rgb(255, 255, 255);
 			}
 		}
 	}

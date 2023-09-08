@@ -13,12 +13,13 @@ body {
 	display: flex;
 	flex-direction: column;
 	padding: 5px;
-	background-image: url(../assets/clear-background.jpeg);
+	background-image: url(../assets/rain-background.jpg);
+	background-color: #082233;
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: center;
 	@media screen and (min-width: 720px) {
-		background-image: url(../assets/clear-background.jpeg);
+		background-image: url(../assets/rain-background.jpg);
 	}
 }
 
