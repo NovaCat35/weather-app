@@ -1,3 +1,9 @@
+@import "./fonts.scss";
+
+$title-font: 'Work Sans', sans-serif;
+$thin-font: 'Quicksand', sans-serif;
+$main-font: montserrat, sans-serif;
+$day-font: 'Crimson Text', serif;
 @mixin centerElements($direction: row) {
 	display: flex;
 	justify-content: center;
@@ -6,10 +12,14 @@
 }
 
 header {
+	font-family: $thin-font;
 	margin: 50px 0 20px;
 	.location-container {
 		@include centerElements(column);
 		gap: 5px;
+		.location-title{
+			font-family: $title-font;
+		}
 	}
 }
 
@@ -23,7 +33,20 @@ main{
 		@include centerElements;
 		gap: 40px;
 		.main-temp {
+			font-family: $main-font;
 			font-size: 3rem;
+			font-weight: 500;
+		}
+		.right-temp-container{
+			@include centerElements(column);
+			font-family: $thin-font;
+			color:rgb(73, 73, 73);
+			font-size: 1.1rem;
+			align-items: flex-start;
+			gap: 10px;
+			span {
+				color: rgb(22, 22, 22);
+			}
 		}
 	}
 	.additional-info-container {
@@ -31,13 +54,18 @@ main{
 		@include centerElements;
 		flex-wrap: wrap;
 		gap: 40px;
-		p {
-			font-size: 1.1rem;
-		}
 		.wrapper-container {
 			@include centerElements(column);
 			p {
 				text-align: center;
+				font-family: $main-font;
+				&:first-child{
+					font-weight: 700;
+					font-size: 1.05rem;
+				}
+				&:nth-child(2){
+					color: rgb(63, 63, 63)
+				}
 			}
 		}
 		@media screen and (min-width: 720px) {
@@ -52,6 +80,13 @@ main{
 			@include centerElements;
 			justify-content: space-around;
 			width: 100%;
+			.forecast-day{
+				font-family: $day-font;
+				font-size: 1.2rem;
+			}
+			.forecast-temp-container{
+				font-family: $thin-font;
+			}
 			@media screen and (min-width: 720px) {
 				@include centerElements(column)
 			}

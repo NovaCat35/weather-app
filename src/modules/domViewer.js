@@ -54,13 +54,31 @@ function createTempConditions() {
 	const mainTemp = createMainTempType();
 	leftTempContainer.appendChild(mainTemp);
 
-	// Temp info's right side container
-	const feelsLikeTemp = createFeelsLikeTempType();
-	const avgTemp = createAvgTemp();
+	// -- Temp info's right side container --
+	// feelsLikeTemp info put in a span
+	const feelsLikeTemp = createElement("p", "high-temp");
+	feelsLikeTemp.textContent = "Feels like ";
+	const feelsLikeTempSpan = document.createElement("span");
+	feelsLikeTempSpan.textContent = createFeelsLikeTempType();
+	feelsLikeTemp.appendChild(feelsLikeTempSpan);
+	// avgTemp info put in a span
+	const avgTemp = createElement("p", "avg-temp");
+	avgTemp.textContent = "Average of ";
+	const avgTempSpan = document.createElement("span");
+	avgTempSpan.textContent = createAvgTemp();
+	avgTemp.appendChild(avgTempSpan);
+	// High temp info put in a span
 	const highTemp = createElement("p", "high-temp");
-	highTemp.textContent = `High of ${createHighTemp(0)}`;
-	const lowTemp = createElement("p", "high-temp");
-	lowTemp.textContent = `Low of ${createLowTemp(0)}`;
+	const highTempSpan = document.createElement("span");
+	highTempSpan.textContent = createHighTemp(0);
+	highTemp.textContent = "High ";
+	highTemp.appendChild(highTempSpan);
+	// Low temp info put in a span
+	const lowTemp = createElement("p", "low-temp");
+	const lowTempSpan = document.createElement("span");
+	lowTempSpan.textContent = createLowTemp(0);
+	lowTemp.textContent = "Low ";
+	lowTemp.appendChild(lowTempSpan);
 
 	rightTempContainer.appendChild(feelsLikeTemp);
 	rightTempContainer.appendChild(avgTemp);
@@ -187,24 +205,18 @@ function createMainTempType() {
 
 // *** We Fill in the info for temp base on "Fahrenheit" or "Celsius" ***
 function createFeelsLikeTempType() {
-	const feelsLikeTemp = createElement("p", "feels-like-info");
 	if (tempSymbol == "F") {
-		feelsLikeTemp.textContent = `Feels like ${currWeatherDetail.current.feelslike_f}°F`;
-	} else {
-		feelsLikeTemp.textContent = `Feels like ${currWeatherDetail.current.feelslike_c}°C`;
+		return `${currWeatherDetail.current.feelslike_f}°F`;
 	}
-	return feelsLikeTemp;
+	return `${currWeatherDetail.current.feelslike_c}°C`;
 }
 
 // *** We Fill in the info for temp base on "Fahrenheit" or "Celsius" ***
 function createAvgTemp() {
-	const avgTemp = createElement("p", "avg-temp");
 	if (tempSymbol == "F") {
-		avgTemp.textContent = `Average of ${currForecastDetail.forecast.forecastday[0].day.avgtemp_f}°F`;
-	} else {
-		avgTemp.textContent = `Average of ${currForecastDetail.forecast.forecastday[0].day.avgtemp_c}°C`;
+		return `${currForecastDetail.forecast.forecastday[0].day.avgtemp_f}°F`;
 	}
-	return avgTemp;
+	return `${currForecastDetail.forecast.forecastday[0].day.avgtemp_c}°C`;
 }
 
 // *** We Fill in the info for temp base on "Fahrenheit" or "Celsius" ***
@@ -234,8 +246,8 @@ function removeWeatherInfo() {
 	while (infoContainer.hasChildNodes()) {
 		infoContainer.removeChild(infoContainer.firstElementChild);
 	}
-	while (headerContainer.hasChildNodes()){
-      headerContainer.removeChild(headerContainer.firstElementChild);
+	while (headerContainer.hasChildNodes()) {
+		headerContainer.removeChild(headerContainer.firstElementChild);
 	}
 }
 
