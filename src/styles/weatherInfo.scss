@@ -10,6 +10,11 @@ $day-font: 'Crimson Text', serif;
 	align-items: center;
 	flex-direction: $direction;
 }
+@mixin transparentBackdrop() {
+	background-color: rgba(46, 46, 46, 0.436);
+	padding: 30px;
+	width: 100vw;
+}
 
 header {
 	font-family: $thin-font;
@@ -50,8 +55,9 @@ main{
 		}
 	}
 	.additional-info-container {
-		margin-top: 35px;
+		@include transparentBackdrop;
 		@include centerElements;
+		margin-top: 35px;
 		flex-wrap: wrap;
 		gap: 40px;
 		.wrapper-container {
@@ -60,11 +66,12 @@ main{
 				text-align: center;
 				font-family: $main-font;
 				&:first-child{
+					color: white;
 					font-weight: 700;
 					font-size: 1.05rem;
 				}
 				&:nth-child(2){
-					color: rgb(63, 63, 63)
+					color: rgb(229, 229, 229)
 				}
 			}
 		}
@@ -73,6 +80,7 @@ main{
 		}
 	}
 	.weekly-container {
+		@include transparentBackdrop;
 		width: 100vw;
 		margin-top: 30px;
 		margin-bottom: 20px;
@@ -81,10 +89,12 @@ main{
 			justify-content: space-around;
 			width: 100%;
 			.forecast-day{
+				color: white;
 				font-family: $day-font;
 				font-size: 1.2rem;
 			}
 			.forecast-temp-container{
+				color: whitesmoke;
 				font-family: $thin-font;
 			}
 			@media screen and (min-width: 720px) {

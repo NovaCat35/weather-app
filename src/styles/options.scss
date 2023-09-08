@@ -4,9 +4,10 @@
 	@include centerElements;
 	gap: 15px;
 	form {
+		background-color: white;
 		@include centerElements;
 		cursor: pointer;
-		border: 1px solid rgb(158, 158, 158);
+		border: 1px solid rgb(200, 199, 199);
 		border-radius: 20px;
 		padding: 0 5px;
 		width: 60vw;

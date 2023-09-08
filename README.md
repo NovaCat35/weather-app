@@ -1,6 +1,5 @@
 # weather-app
-
-
+Weather you like the forecast or not, there's no going forward until you prepare for the downpour...so, give this weather app a go and check it out!
 
 ## Webpack installation:
 > To setup webpack for proper installation, enter the following installments to terminal/command prompt
@@ -13,3 +12,6 @@
 5) npm install sass-loader node-sass --save-dev
 6) npm install date-fns
 ```
+
+### Sources
+Mobile background image: https://iphoneswallpapers.com/watch-tower-in-woods-iphone-wallpaper-4k/
