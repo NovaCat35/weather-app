@@ -1,6 +1,7 @@
 import { formatDate, getDateToDay } from "./dateController.js";
 
 const infoContainer = document.querySelector(".info-container");
+const headerContainer = document.querySelector(".header");
 let tempVersion = "fahrenheit";
 let tempSymbol = "F";
 let currWeatherDetail = null;
@@ -33,13 +34,13 @@ function createLocation() {
 	locationTime.textContent = `${formatedDate}`;
 	locationContainer.appendChild(locationTime);
 
-	infoContainer.appendChild(locationContainer);
+	headerContainer.appendChild(locationContainer);
 }
 
 // Main weather condition description
 function createDailyCondition() {
 	const condition = createElement("h2", "condition-info");
-	condition.textContent = `${currWeatherDetail.current.condition.text}`;
+	condition.textContent = `${currForecastDetail.forecast.forecastday[0].day.condition.text}`;
 	return condition;
 }
 
@@ -138,7 +139,7 @@ function createWeeklyForecast() {
 	const forecastDayList = currForecastDetail.forecast.forecastday;
 
 	for (const [index, forecast] of forecastDayList.entries()) {
-      // Skip the first index since it is the current date
+		// Skip the first index since it is the current date
 		if (index != 0) {
 			const rowContainer = createElement("div", "row-container");
 
@@ -232,6 +233,9 @@ function createWindSpeed() {
 function removeWeatherInfo() {
 	while (infoContainer.hasChildNodes()) {
 		infoContainer.removeChild(infoContainer.firstElementChild);
+	}
+	while (headerContainer.hasChildNodes()){
+      headerContainer.removeChild(headerContainer.firstElementChild);
 	}
 }
 

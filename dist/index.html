@@ -6,21 +6,22 @@
 		<title>Weather App</title>
 	</head>
 	<body>
-		<header>
-			<h1>Weather</h1>
-			<form action="">
-				<label for="search-place">Enter a location</label>
-				<input type="search" name="search-place" id="search-place" placeholder="city" />
-				<button>Submit</button>
-			</form>
-			<label class="switch">
-				<input type="checkbox" />
-            <div class="slider round">
-               <span class="on">°C</span>
-               <span class="off">°F</span>
-            </div>
-			</label>
-		</header>
+		<header class="header"></header>
+		<div class="options">
+			<div class="options-container">
+				<form action="">
+					<input type="search" name="search-place" id="search-place" placeholder="city" />
+					<input type="image" src="./assets/magnify.svg" alt="Submit">
+				</form>
+				<label class="switch">
+					<input type="checkbox" />
+					<div class="slider round">
+						<span class="on">°C</span>
+						<span class="off">°F</span>
+					</div>
+				</label>
+			</div>
+		</div>
 		<main>
 			<div class="info-container"></div>
 		</main>

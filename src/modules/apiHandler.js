@@ -1,5 +1,4 @@
-import { createWeatherInfo, removeWeatherInfo } from "./domViewer.js";
-import {getTodayDate} from "./dateController.js";
+import { createWeatherInfo, removeWeatherInfo, showError } from "./domViewer.js";
 
 const API_KEY = process.env.API_KEY;
 const searchInput = document.querySelector('input[type="search"]');
@@ -10,8 +9,6 @@ const searchInput = document.querySelector('input[type="search"]');
  */
 function handleSubmit(event) {
 	event.preventDefault();
-	removeWeatherInfo(); // reset the DOM info
-
 	const searchInput = document.querySelector('input[type="search"]');
 	const location = searchInput.value;
 	fetchInfo(location);
@@ -41,9 +38,10 @@ async function fetchInfo(location, zip = null) {
 		const [currResponse, forecastResponse] = await Promise.all([currResponsePromise, forecastResponsePromise]);
 		const [currWeatherDetail, forecastWeatherDetail] = await Promise.all([currResponse.json(), forecastResponse.json()]);
 
+		removeWeatherInfo(); // reset the DOM info
 		createWeatherInfo(currWeatherDetail, forecastWeatherDetail);
 	} catch (err) {
-		console.log(err);
+		alert("Please enter a valid city's name");
 		throw new Error(err);
 	}
 }

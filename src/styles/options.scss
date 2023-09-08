@@ -1,0 +1,31 @@
+@import "./weatherInfo.scss";
+
+.options-container {
+	@include centerElements;
+	gap: 15px;
+	form {
+		@include centerElements;
+		cursor: pointer;
+		border: 1px solid rgb(158, 158, 158);
+		border-radius: 20px;
+		padding: 0 5px;
+		width: 60vw;
+		input[type="search"] {
+			font-size: 1.1rem;
+			width: 100%;
+			appearance: none;
+			border: none;
+			border-radius: 20px;
+			outline: none;
+			padding: 8px;
+		}
+		input[type="image"] {
+			position: relative;
+			left: -3px;
+			width: 29px;
+		}
+		@media screen and (min-width: 650px) {
+			width: 30vw;
+		}
+	}
+}
