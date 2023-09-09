@@ -24,17 +24,25 @@ header {
 	.location-container {
 		@include centerElements(column);
 		gap: 5px;
-		.location-title{
-			color: white;
-			text-shadow: 1px 2px 2px rgb(0, 51, 122);
-			font-family: $title-font;
+		.location-title-container {
+			position: relative;
+			@include centerElements;
+			.location-icon {
+				position: absolute;
+				filter: $filter-color;
+				left: -35px;
+				width: 30px;
+			}
+			.location-title{
+				color: white;
+				text-shadow: 1px 2px 2px rgb(0, 51, 122);
+				font-family: $title-font;
+				font-size: 2.2rem;
+			}
 		}
 	}
 }
 
-main{
-	height: 100%;
-}
 .info-container {
 	@include centerElements(column);
 	.temp-info-container {
@@ -50,8 +58,9 @@ main{
 		}
 		.right-temp-container{
 			@include centerElements(column);
-			color:rgb(253, 127, 49);
-			text-shadow: 0px 0px 10px black, 1px 1px 30px black , -1px -1px 20px black;
+			padding: 10px;
+			color:rgb(255, 119, 35);
+			text-shadow: 0px 1px rgb(47, 47, 47), 0px 0px 30px rgb(0, 0, 0), 5px 0px 30px rgb(121, 121, 121) , 0px 5px 30px rgb(55, 55, 55), -5px 0px 30px rgb(121, 121, 121), 0 -5px 30px rgb(121, 121, 121);
 			font-size: 1.1rem;
 			align-items: flex-start;
 			gap: 10px;

@@ -5,6 +5,7 @@ import windImg from "../assets/wind.svg";
 import cloudImg from "../assets/cloud.svg";
 import sunriseImg from "../assets/sunrise.svg";
 import sunsetImg from "../assets/sunset.svg";
+import locationMarker from "../assets/locationIcon.svg";
 
 const infoContainer = document.querySelector(".info-container");
 const headerContainer = document.querySelector(".header");
@@ -25,11 +26,17 @@ function createWeatherInfo(weatherDetail, forecastDetail) {
 }
 
 function createLocation() {
+   const locationContainer = createElement("div", "location-container");
+
 	// We want to show the city and country's name
-	const locationContainer = createElement("div", "location-container");
+   const locationTitleContainer = createElement("div", "location-title-container");
+   const locationIcon = createElement('img', 'location-icon');
 	const locationPlace = createElement("h1", "location-title");
+   locationIcon.src = locationMarker;
 	locationPlace.textContent = `${currWeatherDetail.location.name}, ${currWeatherDetail.location.country}`;
-	locationContainer.appendChild(locationPlace);
+	locationTitleContainer.appendChild(locationIcon);
+	locationTitleContainer.appendChild(locationPlace);
+	locationContainer.appendChild(locationTitleContainer);
 
 	// We display the main weather condition
 	locationContainer.appendChild(createDailyCondition());
