@@ -3,8 +3,7 @@ Weather you like the forecast or not, there's no going forward until you prepare
 
 live link: https://novacat35.github.io/weather-app/ 🌤️
 
-<img width="828" alt="Screenshot 2023-09-08 at 1 07 09 PM" src="https://github.com/NovaCat35/weather-app/assets/54908064/42452764-6d26-4d02-a693-d285e2abfd2b">
-
+<img width="915" alt="Screenshot 2023-09-09 at 12 40 05 AM" src="https://github.com/NovaCat35/weather-app/assets/54908064/e9285ebc-326c-46ec-b437-b9c21b359ce8">
 
 ## Challenges
 While it was easy to fetch simple API requests, I found that some of the information I needed wasn't exactly in the format I wanted. I had to figure out a way around the temp versions..... [To be updated]

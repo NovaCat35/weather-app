@@ -108,6 +108,9 @@ main{
 			.forecast-temp-container{
 				color: whitesmoke;
 				font-family: $thin-font;
+				p:nth-child(2) {
+					color: rgb(158, 158, 158);
+				}
 			}
 			@media screen and (min-width: 720px) {
 				@include centerElements(column)
