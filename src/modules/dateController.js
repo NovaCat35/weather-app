@@ -20,6 +20,7 @@ function getTodayDate() {
 	return formattedDate;
 }
 
+// Convert the date from number ####-##-## --> yyyy-MM-dd --> dayString
 function getDateToDay(dateString) {
 	// Parse the date string into a JavaScript Date object
 	const date = parse(dateString, "yyyy-MM-dd", new Date());
@@ -27,7 +28,6 @@ function getDateToDay(dateString) {
 	// Format the date into a string representing the day of the week
 	const dayOfWeek = format(date, "EEEE"); // "Tuesday"
 
-	console.log(dayOfWeek);
   return dayOfWeek;
 }
 

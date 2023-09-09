@@ -13,13 +13,26 @@ body {
 	display: flex;
 	flex-direction: column;
 	padding: 5px;
-	background-image: url(../assets/rain-background.jpg);
-	background-color: #082233;
+	background-image: url(../assets/sunny-background.jpg);
+	background-color: #000032;
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: center;
-	@media screen and (min-width: 720px) {
+	&.rain{
 		background-image: url(../assets/rain-background.jpg);
+		background-color: #082233;
+	}
+	&.sunny{
+		background-image: url(../assets/sunny-background.jpg);
+		background-color: #000030;
+	}
+	&.day{
+		background-image: url(../assets/day-background.jpg);
+		background-color: #2e112d;
+	}
+	&.night{
+		background-image: url(../assets/night-background.jpg);
+		background-color: #03002e;
 	}
 }
 

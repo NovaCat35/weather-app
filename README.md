@@ -1,12 +1,12 @@
 # weather-app
-Weather you like the forecast or not, there's no going forward until you prepare for the downpour...so, give this weather app a go and check it out!
+Whether (ha get it?) you like the forecast or not, there's no going forward until you prepare for the downpour...so, get ready your umbrellas or sunblock and check out this real time weather tracker!
 
 live link: https://novacat35.github.io/weather-app/ 🌤️
 
 <img width="915" alt="Screenshot 2023-09-09 at 12 40 05 AM" src="https://github.com/NovaCat35/weather-app/assets/54908064/e9285ebc-326c-46ec-b437-b9c21b359ce8">
 
 ## Challenges
-While it was easy to fetch simple API requests, I found that some of the information I needed wasn't exactly in the format I wanted. I had to figure out a way around the temp versions..... [To be updated]
+While fetching API requests, I found myself in a bind with some function still executing even though promises are still being waited on. This cause issues with input blank and errors that would cause my reset functions and tracking variables to record the error issues instead of immediately exiting out like I planned. Eventually, I decided to account for this my placement of certain variables to prevent execution from reaching the code and specifying a better catch block to handle the errors. I learn more about the concept of promises and fetching information through these challenges.
 
 ## Features
 - Display daily and weekly forecast
