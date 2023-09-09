@@ -3,7 +3,7 @@ Weather you like the forecast or not, there's no going forward until you prepare
 
 live link: https://novacat35.github.io/weather-app/ 🌤️
 
-<img width="828" alt="Screenshot 2023-09-08 at 1 07 09 PM" src="https://github.com/NovaCat35/weather-app/assets/54908064/42452764-6d26-4d02-a693-d285e2abfd2b">
+<img width="899" alt="Screenshot 2023-09-08 at 10 41 50 PM" src="https://github.com/NovaCat35/weather-app/assets/54908064/c27e1007-1133-41d0-98c3-081d9a06ec18">
 
 
 ## Challenges
