@@ -1,4 +1,10 @@
 import { formatDate, getDateToDay } from "./dateController.js";
+import humidityImg from "../assets/humidity.svg";
+import rainImg from "../assets/rain.svg";
+import windImg from "../assets/wind.svg";
+import cloudImg from "../assets/cloud.svg";
+import sunriseImg from "../assets/sunrise.svg";
+import sunsetImg from "../assets/sunset.svg";
 
 const infoContainer = document.querySelector(".info-container");
 const headerContainer = document.querySelector(".header");
@@ -94,53 +100,24 @@ function createTempConditions() {
 function createAdditionalInfo() {
 	const additionalInfoContainer = createElement("div", "additional-info-container");
 
-	const humidityWrapper = createElement("div", "wrapper-container");
-	const humidityLabel = createElement("p", "humidity-label");
-	const humidity = createElement("p", "humidity");
-	humidityLabel.textContent = "Humidity";
-	humidity.textContent = `${currWeatherDetail.current.humidity}%`;
-	humidityWrapper.appendChild(humidityLabel);
-	humidityWrapper.appendChild(humidity);
+	const humidityText = `${currWeatherDetail.current.humidity}%`;
+	const humidityWrapper = createWrapperContainer("humidity", humidityImg, humidityText);
 
-	const precipitationWrapper = createElement("div", "wrapper-container");
-	const precipitationLabel = createElement("p", "precipitation-label");
-	const precipitation = createElement("p", "precipitation");
-	precipitationLabel.textContent = "Chance of rain";
-	precipitation.textContent = `${currForecastDetail.forecast.forecastday[0].day.daily_chance_of_rain}%`;
-	precipitationWrapper.appendChild(precipitationLabel);
-	precipitationWrapper.appendChild(precipitation);
+	const precipitationText = `${currForecastDetail.forecast.forecastday[0].day.daily_chance_of_rain}%`;
+	const precipitationWrapper = createWrapperContainer("precipitation", rainImg, precipitationText);
 
-	const windWrapper = createElement("div", "wrapper-container");
-	const windLabel = createElement("p", "wind-label");
-	const wind = createElement("p", "wind");
-	windLabel.textContent = "Wind speed";
-	wind.textContent = createWindSpeed();
-	windWrapper.appendChild(windLabel);
-	windWrapper.appendChild(wind);
+	const windText = createWindSpeed();
+	const windWrapper = createWrapperContainer("wind", windImg, windText);
 
-	const cloudinessWrapper = createElement("div", "wrapper-container");
-	const cloudinessLabel = createElement("p", "cloudiness-label");
-	const cloudiness = createElement("p", "cloudiness");
-	cloudinessLabel.textContent = "Cloudiness";
-	cloudiness.textContent = `${currWeatherDetail.current.cloud}%`;
-	cloudinessWrapper.appendChild(cloudinessLabel);
-	cloudinessWrapper.appendChild(cloudiness);
+	const cloudinessText = `${currWeatherDetail.current.cloud}%`;
+	const cloudinessWrapper = createWrapperContainer("cloudiness", cloudImg, cloudinessText);
 
-	const sunriseWrapper = createElement("div", "wrapper-container");
-	const sunriseLabel = createElement("p", "sunrise-label");
-	const sunrise = createElement("p", "sunrise");
-	sunriseLabel.textContent = "Sunrise";
-	sunrise.textContent = `${currForecastDetail.forecast.forecastday[0].astro.sunrise}`;
-	sunriseWrapper.appendChild(sunriseLabel);
-	sunriseWrapper.appendChild(sunrise);
+	const sunriseText = `${currForecastDetail.forecast.forecastday[0].astro.sunrise}`;
+	const sunriseWrapper = createWrapperContainer("sunrise", sunriseImg, sunriseText);
 
-	const sunsetWrapper = createElement("div", "wrapper-container");
-	const sunsetLabel = createElement("p", "sunset-label");
-	const sunset = createElement("p", "sunset");
-	sunsetLabel.textContent = "Sunset";
-	sunset.textContent = `${currForecastDetail.forecast.forecastday[0].astro.sunset}`;
-	sunsetWrapper.appendChild(sunsetLabel);
-	sunsetWrapper.appendChild(sunset);
+
+	const sunsetText = `${currForecastDetail.forecast.forecastday[0].astro.sunset}`;
+	const sunsetWrapper = createWrapperContainer("sunrise", sunsetImg, sunsetText);
 
 	additionalInfoContainer.appendChild(humidityWrapper);
 	additionalInfoContainer.appendChild(precipitationWrapper);
@@ -249,6 +226,20 @@ function removeWeatherInfo() {
 	while (headerContainer.hasChildNodes()) {
 		headerContainer.removeChild(headerContainer.firstElementChild);
 	}
+}
+
+function createWrapperContainer(name, imgSrc, contentInfo) {
+	const wrapper = createElement("div", "wrapper-container");
+	const labelName = createElement("p", `${name}-label`);
+   const img = createElement("img", `${name}-img`)
+	const info = createElement("p", `${name}`);
+	labelName.textContent = name.charAt(0).toUpperCase() + name.slice(1);
+   img.src = imgSrc;
+	info.textContent = contentInfo;
+	wrapper.appendChild(labelName);
+	wrapper.appendChild(img);
+	wrapper.appendChild(info);
+	return wrapper;
 }
 
 function handleToggle(toggledTypeVersion) {

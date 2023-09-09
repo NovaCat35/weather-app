@@ -15,6 +15,7 @@ $slider-off-background:rgb(41, 204, 171);
 		height: 0;
 		&:checked + .slider {
 			background-color: $slider-on-background;
+			outline: 1.5px solid #09689c;
          .on {
             display: block;
          }
@@ -54,6 +55,7 @@ $slider-off-background:rgb(41, 204, 171);
 		/* Rounded sliders */
 		&.round {
 			border-radius: 34px;
+			outline: 1.5px solid #099c8d;
 			&:before {
 				border-radius: 50%;
 			}

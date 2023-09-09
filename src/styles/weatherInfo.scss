@@ -4,6 +4,8 @@ $title-font: 'Work Sans', sans-serif;
 $thin-font: 'Quicksand', sans-serif;
 $main-font: montserrat, sans-serif;
 $day-font: 'Crimson Text', serif;
+$filter-color: invert(92%) sepia(93%) saturate(0%) hue-rotate(202deg) brightness(106%) contrast(106%);
+
 @mixin centerElements($direction: row) {
 	display: flex;
 	justify-content: center;
@@ -66,6 +68,7 @@ main{
 		gap: 40px;
 		.wrapper-container {
 			@include centerElements(column);
+			gap: 5px;
 			p {
 				text-align: center;
 				font-family: $main-font;
@@ -74,13 +77,18 @@ main{
 					font-weight: 700;
 					font-size: 1.05rem;
 				}
-				&:nth-child(2){
-					color: rgb(229, 229, 229)
+				&:nth-child(3){
+					color: rgb(207, 207, 207)
 				}
+			}
+			img {
+				width: 30px;
+				filter: $filter-color;
 			}
 		}
 		@media screen and (min-width: 720px) {
 			flex: 1;
+			gap: 5vw;
 		}
 	}
 	.weekly-container {
