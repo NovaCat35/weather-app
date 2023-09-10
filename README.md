@@ -1,12 +1,12 @@
 # weather-app
-Whether (ha get it?) you like the forecast or not, there's no going forward until you prepare for the downpour...so, get ready your umbrellas or sunblock and check out this real time weather tracker!
+Whether (ha get it?) you like the forecast or not, there's no going forward until you prepare for the downpour...so, get ready your umbrella or sunblock and check out this real time weather tracker!
 
 live link: https://novacat35.github.io/weather-app/ 🌤️
 
 <img width="915" alt="Screenshot 2023-09-09 at 12 40 05 AM" src="https://github.com/NovaCat35/weather-app/assets/54908064/e9285ebc-326c-46ec-b437-b9c21b359ce8">
 
 ## Challenges
-While fetching API requests, I found myself in a bind with some function still executing even though promises are still being waited on. This cause issues with input blank and errors that would cause my reset functions and tracking variables to record the error issues instead of immediately exiting out like I planned. Eventually, I decided to account for this my placement of certain variables to prevent execution from reaching the code and specifying a better catch block to handle the errors. I learn more about the concept of promises and fetching information through these challenges.
+While fetching API requests, I found myself in a bind with the way I structure try-catch blocks around promises and dealing with fetch errors and input errors. This would lead to a number of issues where some functions are being executed even when there's error instead of being catch. From these challenges, trials, and errors, going forward I would be a bit more aware of implementing for errors and some misconceptions of try-catch in dealing with fetch errors. 
 
 ## Features
 - Display daily and weekly forecast
