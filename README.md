@@ -1,4 +1,4 @@
-# weather-app
+# Weather App
 Whether (ha get it?) you like the forecast or not, there's no going forward until you prepare for the downpour...so, get ready your umbrella or sunblock and check out this real-time weather tracker!
 
 Live link: https://novacat35.github.io/weather-app/ 🌤️
