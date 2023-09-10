@@ -61,7 +61,7 @@ header {
 			@include centerElements(column);
 			padding: 10px;
 			color:rgb(255, 119, 35);
-			text-shadow: 0px 1px rgb(43, 43, 45), 0px 0px 30px rgb(85, 85, 85), 5px 0px 30px rgb(85, 85, 85) , 0px 5px 30px rgb(85, 85, 85), -5px 0px 30px rgb(85, 85, 85), 0 -5px 30px rgb(85, 85, 85);
+			text-shadow: 0px 1px rgb(43, 43, 45), 0px 0px 30px rgb(0, 0, 0), 5px 0px 30px rgb(0, 0, 0) , 0px 5px 30px rgb(0, 0, 0), -5px 0px 30px rgb(0, 0, 0), 0 -5px 30px rgb(0, 0, 0);
 			font-size: 1.1rem;
 			align-items: flex-start;
 			gap: 10px;
