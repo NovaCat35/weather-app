@@ -3,7 +3,8 @@ Whether (ha get it?) you like the forecast or not, there's no going forward unti
 
 Live link: https://novacat35.github.io/weather-app/ 🌤️
 
-<img width="915" alt="Screenshot 2023-09-09 at 12 40 05 AM" src="https://github.com/NovaCat35/weather-app/assets/54908064/e9285ebc-326c-46ec-b437-b9c21b359ce8">
+<img width="942" alt="Screenshot 2023-09-10 at 1 32 10 AM" src="https://github.com/NovaCat35/weather-app/assets/54908064/518ac24e-e1a7-4700-b71a-eea01fcffba3">
+
 
 ## Challenges
 While fetching API requests, I found myself in a bind with how I structure try-catch blocks around promises and deal with fetch and input errors. This would lead to a number of issues where some functions are being executed even when there's an error instead of being caught. From these challenges, trials, and errors, going forward I would be a bit more aware of implementing for mistakes and some misconceptions of try-catch in dealing with fetch errors. 
