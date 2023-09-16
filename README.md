@@ -10,7 +10,7 @@ Live link: https://novacat35.github.io/weather-app/ 🌤️
 While fetching API requests, I found myself in a bind with how I structure try-catch blocks around promises and deal with fetch and input errors. This would lead to a number of issues where some functions are being executed even when there's an error instead of being caught. From these challenges, trials, and errors, going forward I would be a bit more aware of implementing for mistakes and some misconceptions of try-catch in dealing with fetch errors. 
 
 ## Features
-- Display daily and weekly forecast
+- Display daily and weekly forecast (update: API plan ran out, so only 2 day forecast😭)
 - Display data in metric or imperial units
 - Changing backdrop depending on forecast
 - Additional info about current weather
