@@ -115,6 +115,9 @@ header {
 				font-family: $day-font;
 				font-size: 1.2rem;
 			}
+			img.forecast-weather-icon{
+				width: 70px;
+			}
 			.forecast-temp-container{
 				color: whitesmoke;
 				font-family: $thin-font;

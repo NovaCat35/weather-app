@@ -1,7 +1,8 @@
 import { createWeatherInfo, removeWeatherInfo } from "./domViewer.js";
 import changeBackground from "./backgroundHandler.js";
 
-const API_KEY = process.env.API_KEY;
+const API_KEY1 = process.env.API_KEY1;
+const API_KEY2 = process.env.API_KEY2;
 const searchInput = document.querySelector('input[type="search"]');
 let prevLocation = null;
 /*
@@ -16,35 +17,29 @@ function handleSubmit(event) {
 }
 
 /**
- * @param {string} initialLocation - the city's name
+ * @param {string} initialLocation - the city's name or zipc ode
  */
 function initLocation(initialLocation) {
 	fetchInfo(initialLocation).then((response) => {
-		console.log(`We're in: ${response}`);
-		console.log(prevLocation);
+		// In case submitted location is null, we keep a record of the previous location
 		if (initialLocation != null) {
 			prevLocation = initialLocation;
 		}
-		let [currWeatherDetail, forecastWeatherDetail] = response;
+		let [currWeatherDetail, forecastWeatherDetail, forecastWeatherList] = response;
 		removeWeatherInfo(); // reset the DOM info
 		changeBackground(forecastWeatherDetail); // for some reason, the forecastWeather has more accurate condition info
-		createWeatherInfo(currWeatherDetail, forecastWeatherDetail);
+		createWeatherInfo(currWeatherDetail, forecastWeatherDetail, forecastWeatherList);
 	});
 }
 
 async function fetchInfo(location = null) {
 	let currResponsePromise = null;
 	let forecastResponsePromise = null;
-	console.log(prevLocation);
 	try {
 		// The first request once the page loads is the initial default location zip: 07871
 		if (location) {
-			currResponsePromise = fetch(`https://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=${location}`, {
-				mode: "cors",
-			});
-			forecastResponsePromise = fetch(`https://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${location}&days=8`, {
-				mode: "cors",
-			});
+			currResponsePromise = fetchAPI(`https://api.weatherapi.com/v1/current.json?key=${API_KEY1}&q=${location}`)
+			forecastResponsePromise = fetchAPI(`https://api.weatherapi.com/v1/forecast.json?key=${API_KEY1}&q=${location}&days=8`)
 		} else {
 			// IF no location entered, we will call later functions to call up the previous location (this can be the default location zip: 07871)
 			throw new Error("Invalid input");
@@ -53,11 +48,35 @@ async function fetchInfo(location = null) {
 		if (!currResponse.ok || !forecastResponse.ok) {
 			throw new Error(`HTTP error! status: ${currResponse.status}`);
 		}
-		return await Promise.all([currResponse.json(), forecastResponse.json()]);
+		const [currResponseJson, forecastResponseJson] = await Promise.all([currResponse.json(), forecastResponse.json()]);
+		// Call other weekly API forecast using the lat & lon of the currentAPI...cause it's free :)
+		let weeklyForecastList = await fetchWeeklyForecast(currResponseJson)
+		return [currResponseJson, forecastResponseJson, weeklyForecastList]
+
 	} catch (err) {
 		alert(`${err}. Please try again.`);
 		return Promise.reject("error");
 	}
 }
 
-export { handleSubmit, initLocation };
+// Update: the other forecast call free trial ran out...so Im using another free one for weekly forecast
+async function fetchWeeklyForecast(currForecastDetail){
+	const [lat, lon] = getCoordinate(currForecastDetail);
+	const forecastPromise2 = await fetchAPI(`https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&appid=${API_KEY2}&exclude=hourly,minutely`)
+	const forecastResponse2 = await forecastPromise2.json()
+	return forecastResponse2.daily;
+}
+
+function fetchAPI(link) {
+	const responsePromise = fetch(link, {
+		mode: "cors",
+	});
+	return responsePromise;
+}
+
+function getCoordinate(currForecastDetail) {
+	const lat = currForecastDetail.location.lat;
+	const lon = currForecastDetail.location.lon;
+	return [lat, lon];
+}
+export { handleSubmit, initLocation, fetchWeeklyForecast };

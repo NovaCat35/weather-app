@@ -6,7 +6,7 @@ export default function changeBackground(forecastWeatherDetail) {
 	if (conditionInfoDetails.includes("rain") || conditionInfoDetails.includes("thunder") || conditionInfoDetails.includes("snow")) {
       bodyTag.className = "rain";
       return;
-	} else if (conditionInfoDetails.includes("sunny")) {
+	} else if (conditionInfoDetails.includes("sunny") && dayTime) {
 		bodyTag.className = "sunny";
       return;
 	} else if (dayTime) {

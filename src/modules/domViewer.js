@@ -1,4 +1,5 @@
 import { formatDate, getDateToDay } from "./dateController.js";
+import convertKelvin from "./tempConversion.js";
 import humidityImg from "../assets/humidity.svg";
 import rainImg from "../assets/rain.svg";
 import windImg from "../assets/wind.svg";
@@ -13,12 +14,14 @@ let tempVersion = "fahrenheit";
 let tempSymbol = "F";
 let currWeatherDetail = null;
 let currForecastDetail = null;
+let currForecastWeatherList = null;
 
 // WE IMMEDIATELY fill all the info fetched from weatherDetail into the actual DOM here
-function createWeatherInfo(weatherDetail, forecastDetail) {
+function createWeatherInfo(weatherDetail, forecastDetail, forecastWeatherList) {
 	// We need to keep track of the current fetched details so we can reuse info if toggle temp switch clicked
 	currWeatherDetail = weatherDetail;
 	currForecastDetail = forecastDetail;
+	currForecastWeatherList = forecastWeatherList;
 	createLocation();
 	createTempConditions();
 	createAdditionalInfo();
@@ -26,13 +29,13 @@ function createWeatherInfo(weatherDetail, forecastDetail) {
 }
 
 function createLocation() {
-   const locationContainer = createElement("div", "location-container");
+	const locationContainer = createElement("div", "location-container");
 
 	// We want to show the city and country's name
-   const locationTitleContainer = createElement("div", "location-title-container");
-   const locationIcon = createElement('img', 'location-icon');
+	const locationTitleContainer = createElement("div", "location-title-container");
+	const locationIcon = createElement("img", "location-icon");
 	const locationPlace = createElement("h1", "location-title");
-   locationIcon.src = locationMarker;
+	locationIcon.src = locationMarker;
 	locationPlace.textContent = `${currWeatherDetail.location.name}, ${currWeatherDetail.location.country}`;
 	locationTitleContainer.appendChild(locationIcon);
 	locationTitleContainer.appendChild(locationPlace);
@@ -122,7 +125,6 @@ function createAdditionalInfo() {
 	const sunriseText = `${currForecastDetail.forecast.forecastday[0].astro.sunrise}`;
 	const sunriseWrapper = createWrapperContainer("sunrise", sunriseImg, sunriseText);
 
-
 	const sunsetText = `${currForecastDetail.forecast.forecastday[0].astro.sunset}`;
 	const sunsetWrapper = createWrapperContainer("sunrise", sunsetImg, sunsetText);
 
@@ -137,22 +139,20 @@ function createAdditionalInfo() {
 
 function createWeeklyForecast() {
 	const weeklyContainer = createElement("div", "weekly-container");
-	// const date = currForecastDetail.forecast.forecastday[1].date;
-	const forecastDayList = currForecastDetail.forecast.forecastday;
 
-	for (const [index, forecast] of forecastDayList.entries()) {
+	for (const [index, forecast] of currForecastWeatherList.entries()) {
 		// Skip the first index since it is the current date
 		if (index != 0) {
 			const rowContainer = createElement("div", "row-container");
 
 			// Produce the list of days into the row
 			const day = createElement("p", "forecast-day");
-			day.textContent = getDateToDay(forecast.date);
+			day.textContent = getDateToDay(forecast.dt);
 			rowContainer.appendChild(day);
 
 			// Produce day's forecast icon
 			const dayWeatherIcon = createElement("img", "forecast-weather-icon");
-			dayWeatherIcon.src = "https:" + getWeatherIcon(index);
+			dayWeatherIcon.src = " https://openweathermap.org/img/wn/" + getWeatherIcon(index) + "@2x.png";
 			rowContainer.appendChild(dayWeatherIcon);
 
 			// Produce the max and min temp for the day
@@ -172,7 +172,7 @@ function createWeeklyForecast() {
 }
 
 function getWeatherIcon(index) {
-	return `${currForecastDetail.forecast.forecastday[index].day.condition.icon}`;
+	return `${currForecastWeatherList[index].weather[0].icon}`;
 }
 
 // *** We Fill in the info for temp base on "Fahrenheit" or "Celsius" ***
@@ -205,18 +205,16 @@ function createAvgTemp() {
 
 // *** We Fill in the info for temp base on "Fahrenheit" or "Celsius" ***
 function createHighTemp(index) {
-	if (tempSymbol == "F") {
-		return `${currForecastDetail.forecast.forecastday[index].day.maxtemp_f}°F`;
-	}
-	return `${currForecastDetail.forecast.forecastday[index].day.maxtemp_c}°C`;
+	const kelvin = currForecastWeatherList[index].temp.max;
+	const convertedTemp = convertKelvin(kelvin, tempSymbol);
+	return `${convertedTemp}°${tempSymbol}`;
 }
 
 // *** We Fill in the info for temp base on "Fahrenheit" or "Celsius" ***
 function createLowTemp(index) {
-	if (tempSymbol == "F") {
-		return `${currForecastDetail.forecast.forecastday[index].day.mintemp_f}°F`;
-	}
-	return `${currForecastDetail.forecast.forecastday[index].day.mintemp_c}°C`;
+	const kelvin = currForecastWeatherList[index].temp.min;
+	const convertedTemp = convertKelvin(kelvin, tempSymbol);
+	return `${convertedTemp}°${tempSymbol}`;
 }
 
 function createWindSpeed() {
@@ -238,10 +236,10 @@ function removeWeatherInfo() {
 function createWrapperContainer(name, imgSrc, contentInfo) {
 	const wrapper = createElement("div", "wrapper-container");
 	const labelName = createElement("p", `${name}-label`);
-   const img = createElement("img", `${name}-img`)
+	const img = createElement("img", `${name}-img`);
 	const info = createElement("p", `${name}`);
 	labelName.textContent = name.charAt(0).toUpperCase() + name.slice(1);
-   img.src = imgSrc;
+	img.src = imgSrc;
 	info.textContent = contentInfo;
 	wrapper.appendChild(labelName);
 	wrapper.appendChild(img);

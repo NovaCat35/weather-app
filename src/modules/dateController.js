@@ -20,15 +20,25 @@ function getTodayDate() {
 	return formattedDate;
 }
 
-// Convert the date from number ####-##-## --> yyyy-MM-dd --> dayString
-function getDateToDay(dateString) {
-	// Parse the date string into a JavaScript Date object
-	const date = parse(dateString, "yyyy-MM-dd", new Date());
+// // Convert the date from number ####-##-## --> yyyy-MM-dd --> dayString
+// function getDateToDay(dateString) {
+// 	// Parse the date string into a JavaScript Date object
+// 	const date = parse(dateString, "yyyy-MM-dd", new Date());
 
-	// Format the date into a string representing the day of the week
-	const dayOfWeek = format(date, "EEEE"); // "Tuesday"
+// 	// Format the date into a string representing the day of the week
+// 	const dayOfWeek = format(date, "EEEE"); // "Tuesday"
 
-  return dayOfWeek;
+//   return dayOfWeek;
+// }
+
+// Convert the date (Unix, UTC) to number ####-##-## -> yyyy-MM-dd --> dayString
+function getDateToDay(unixTimestamp) {
+	/* Create a new JavaScript Date object based on Unix timestamp.
+	Multiplied it by 1000 to convert it into milliseconds */
+	const date = new Date(unixTimestamp * 1000);
+	const dayOfWeek = format(date, 'EEEE'); // "Tuesday"
+	console.log(dayOfWeek)
+	return dayOfWeek;
 }
 
 export { formatDate, getTodayDate, getDateToDay };
