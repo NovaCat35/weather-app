@@ -256,7 +256,7 @@ function handleToggle(toggledTypeVersion) {
 		tempSymbol = "F";
 	}
 	removeWeatherInfo();
-	createWeatherInfo(currWeatherDetail, currForecastDetail);
+	createWeatherInfo(currWeatherDetail, currForecastDetail, currForecastWeatherList);
 }
 
 function createElement(type, className) {
